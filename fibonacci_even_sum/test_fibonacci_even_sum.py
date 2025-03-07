@@ -7,7 +7,7 @@ unit testleri.
 """
 
 import unittest
-from .fibonacci_even_sum import (
+from .fibonacci_even_sum import (  # noqa
     fibonacci_even_sum,
     fibonacci_even_sum_original,
     fibonacci_even_sum_direct,
@@ -62,11 +62,14 @@ class TestFibonacciEvenSum(unittest.TestCase):
         # küçük farklılıklar gösterebilir
         self.assertEqual(result1, result2)
         self.assertEqual(result1, result3)
-        
+
         # Formül tabanlı hesaplama için %0.001 tolerans kabul ediyoruz
         tolerance = abs(result1) * 0.00001  # %0.001 tolerans
-        self.assertLess(abs(result1 - result4), tolerance,
-                       f"Sonuçlar arasındaki fark çok büyük: {result1} != {result4}")
+        self.assertLess(
+            abs(result1 - result4),
+            tolerance,
+            f"Sonuçlar arasındaki fark çok büyük: {result1} != {result4}"
+        )
 
     def test_negative_value(self):
         """Negatif değer için test."""
