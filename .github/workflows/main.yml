@@ -41,7 +41,7 @@ jobs:
           architecture: ${{ matrix.os == 'macos-latest' ? 'arm64' : 'x64' }}
 
       - name: Verify Files Exist
-        run: ls -R fibonacci_even_sum || echo "No files found"
+        run: ls -R fibonacci_even_sum || echo 'No files found'
 
       - name: Install dependencies (Ubuntu/macOS)
         if: matrix.os != 'windows-latest'
@@ -65,7 +65,7 @@ jobs:
           if [ -f fibonacci_even_sum/fibonacci_even_sum.py ] && [ -f fibonacci_even_sum/test_fibonacci_even_sum.py ]; then
             flake8 fibonacci_even_sum/fibonacci_even_sum.py fibonacci_even_sum/test_fibonacci_even_sum.py;
           else
-            echo "Linting skipped due to missing files";
+            echo 'Linting skipped due to missing files';
           fi
 
       - name: Run Fibonacci Even Sum Tests with Coverage
@@ -74,7 +74,7 @@ jobs:
           if [ -f fibonacci_even_sum/test_fibonacci_even_sum.py ]; then
             pytest --cov=fibonacci_even_sum fibonacci_even_sum/test_fibonacci_even_sum.py;
           else
-            echo "Tests skipped due to missing files";
+            echo 'Tests skipped due to missing files';
           fi
 
       - name: Upload Coverage Report
