@@ -176,70 +176,56 @@ def main():
     if args.formula:
         # Kapalı formül kullanarak hesapla
         result = fibonacci_even_sum_formula(args.number)
-        print("Fibonacci serisinin {} sayısına kadar olan "
-              "çift sayılarının toplamı: {}".format(args.number, result))
+        print(f"Fibonacci serisinin {args.number} sayısına kadar olan "
+              f"çift sayılarının toplamı: {result}")
         return
 
     if args.direct:
         # Doğrudan yöntem kullanarak hesapla
         result = fibonacci_even_sum_direct(args.number)
-        print("Fibonacci serisinin {} sayısına kadar olan "
-              "çift sayılarının toplamı: {}".format(args.number, result))
+        print(f"Fibonacci serisinin {args.number} sayısına kadar olan "
+              f"çift sayılarının toplamı: {result}")
         return
 
     if args.compare:
         # Performans karşılaştırması
-        print("N = {} için performans karşılaştırması:".format(args.number))
+        print(f"N = {args.number} için performans karşılaştırması:")
 
         # Düzeltilmiş formül
         start_time = time.time()
         result_formula = fibonacci_even_sum_formula(args.number)
-        end_time = time.time()
-        time_formula = end_time - start_time
+        formula_time = time.time() - start_time
+        print(f"Kapalı formül: {result_formula} "
+              f"(Süre: {formula_time:.6f} saniye)")
 
         # Doğrudan yöntem
         start_time = time.time()
         result_direct = fibonacci_even_sum_direct(args.number)
-        end_time = time.time()
-        time_direct = end_time - start_time
+        direct_time = time.time() - start_time
+        print(f"Doğrudan yöntem: {result_direct} "
+              f"(Süre: {direct_time:.6f} saniye)")
 
-        # Optimize edilmiş algoritma
+        # Standart yöntem
         start_time = time.time()
-        result1 = fibonacci_even_sum(args.number)
-        end_time = time.time()
-        time1 = end_time - start_time
+        result_standard = fibonacci_even_sum(args.number)
+        standard_time = time.time() - start_time
+        print(f"Standart yöntem: {result_standard} "
+              f"(Süre: {standard_time:.6f} saniye)")
 
-        # Orijinal algoritma
-        start_time = time.time()
-        result2 = fibonacci_even_sum_original(args.number)
-        end_time = time.time()
-        time2 = end_time - start_time
+        # Sonuçların doğruluğunu kontrol et
+        if result_formula == result_direct == result_standard:
+            print(f"Tüm yöntemler aynı sonucu verdi: {result_standard}")
+        else:
+            print("HATA: Yöntemler farklı sonuçlar verdi!")
+            print(f"Kapalı formül: {result_formula}")
+            print(f"Doğrudan yöntem: {result_direct}")
+            print(f"Standart yöntem: {result_standard}")
+        return
 
-        print("Düzeltilmiş formül: {:.8f} saniye".format(time_formula))
-        print("Doğrudan yöntem: {:.8f} saniye".format(time_direct))
-        print("Optimize edilmiş algoritma: {:.8f} saniye".format(time1))
-        print("Orijinal algoritma: {:.8f} saniye".format(time2))
-
-        print("\nHızlanma oranları:")
-        print("Düzeltilmiş formül / Orijinal: {:.2f}x".format(
-            time2 / time_formula))
-        print("Doğrudan yöntem / Orijinal: {:.2f}x".format(
-            time2 / time_direct))
-        print("Optimize edilmiş / Orijinal: {:.2f}x".format(time2 / time1))
-
-        print("\nSonuçlar:")
-        print("Düzeltilmiş formül = {}".format(result_formula))
-        print("Doğrudan yöntem = {}".format(result_direct))
-        print("Optimize edilmiş = {}".format(result1))
-        print("Orijinal = {}".format(result2))
-
-        print("\nSonuçlar eşit mi: {}".format(
-            result_formula == result_direct == result1 == result2))
-    else:
-        # Normal çalıştırma
-        result = fibonacci_even_sum(args.number)
-        print("Fibonacci serisinin {} sayısına kadar olan "
-              "çift sayılarının toplamı: {}".format(args.number, result))
+    # Normal çalıştırma
+    result = fibonacci_even_sum(args.number)
+    print(f"Fibonacci serisinin {args.number} sayısına kadar olan "
+          f"çift sayılarının toplamı: {result}")
 
 
 if __name__ == "__main__":

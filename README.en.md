@@ -2,7 +2,7 @@
 
 [![Fibonacci Even Sum Test](https://github.com/huseyinaslim/fibonacci-even-sum/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/huseyinaslim/fibonacci-even-sum/actions/workflows/main.yml)
 [![Downloads](https://img.shields.io/github/downloads/huseyinaslim/fibonacci-even-sum/total)](https://github.com/huseyinaslim/fibonacci-even-sum/releases)
-[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/1.0.0/)
+[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/)
 [![License](https://img.shields.io/github/license/huseyinaslim/fibonacci-even-sum)](https://github.com/huseyinaslim/fibonacci-even-sum/blob/main/LICENSE)
 
 *Bu belgeyi [Türkçe](README.md) olarak oku*
@@ -71,13 +71,15 @@ This command installs the project in development mode, so changes you make to th
 You can run the program as follows:
 
 ```bash
-python3 fibonacci_even_sum.py N
+# As a command-line tool after installation
+fibonacci-even-sum N
 ```
 
-or on Unix/Linux/MacOS systems:
+or as a Python module:
 
 ```bash
-./fibonacci_even_sum.py N
+# Run as a module
+python -m fibonacci_even_sum N
 ```
 
 Here, `N` is the upper limit of the Fibonacci series.
@@ -86,22 +88,22 @@ To use different algorithms:
 
 ```bash
 # Calculate using direct method
-python3 fibonacci_even_sum.py N --direct
+fibonacci-even-sum N --direct
 
 # Calculate using corrected formula
-python3 fibonacci_even_sum.py N --formula
+fibonacci-even-sum N --formula
 ```
 
 To see a performance comparison of the algorithms:
 
 ```bash
-python3 fibonacci_even_sum.py N --compare
+fibonacci-even-sum N --compare
 ```
 
 ### Example
 
 ```bash
-python3 fibonacci_even_sum.py 100
+fibonacci-even-sum 100
 ```
 
 This command will calculate the sum of even numbers in the Fibonacci series up to 100.
@@ -111,13 +113,15 @@ This command will calculate the sum of even numbers in the Fibonacci series up t
 This project includes unit tests to verify that all algorithms work correctly. To run the tests:
 
 ```bash
-python3 -m unittest test_fibonacci_even_sum.py
+# Run as a module
+python -m fibonacci_even_sum.test_fibonacci_even_sum
 ```
 
 or by directly running the test file:
 
 ```bash
-python3 test_fibonacci_even_sum.py
+# Run directly
+python fibonacci_even_sum/test_fibonacci_even_sum.py
 ```
 
 ### Test Scenarios
