@@ -1,7 +1,6 @@
 # Even Sum of Fibonacci Series
 
-[![Tests](https://img.shields.io/github/workflow/status/huseyinaslim/fibonacci-even-sum/tests?label=tests)](https://github.com/huseyinaslim/fibonacci-even-sum/actions)
-[![Downloads](https://img.shields.io/github/downloads/huseyinaslim/fibonacci-even-sum/total)](https://github.com/huseyinaslim/fibonacci-even-sum/releases)
+[![Fibonacci Even Sum Test](https://github.com/huseyinaslim/fibonacci-even-sum/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/huseyinaslim/fibonacci-even-sum/actions/workflows/main.yml)[![Downloads](https://img.shields.io/github/downloads/huseyinaslim/fibonacci-even-sum/total)](https://github.com/huseyinaslim/fibonacci-even-sum/releases)
 [![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/1.0.0/)
 [![License](https://img.shields.io/github/license/huseyinaslim/fibonacci-even-sum)](https://github.com/huseyinaslim/fibonacci-even-sum/blob/main/LICENSE)
 
