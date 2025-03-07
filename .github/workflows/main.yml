@@ -5,6 +5,16 @@ name: Fibonacci Even Sum Test
 # @author Hüseyin ASLIM <22098618@mail.baskent.edu.tr>
 # ======================================================
 
+on:
+  push:
+    branches:
+      - develop
+      - "*"
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
 jobs:
   test:
     strategy:
