@@ -32,9 +32,11 @@ jobs:
         run: |
           brew reinstall gettext
           brew link --force --overwrite gettext
-          echo "export PATH=\"$(brew --prefix gettext)/bin:$PATH\"" >> $GITHUB_ENV
-          echo "export LDFLAGS=\"-L$(brew --prefix gettext)/lib\"" >> $GITHUB_ENV
-          echo "export CPPFLAGS=\"-I$(brew --prefix gettext)/include\"" >> $GITHUB_ENV
+          sudo mkdir -p /usr/local/opt
+          sudo ln -sf $(brew --prefix gettext) /usr/local/opt/gettext
+          echo "export PATH=$(brew --prefix gettext)/bin:$PATH" >> $GITHUB_ENV
+          echo "export LDFLAGS=-L$(brew --prefix gettext)/lib" >> $GITHUB_ENV
+          echo "export CPPFLAGS=-I$(brew --prefix gettext)/include" >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -70,4 +72,3 @@ jobs:
       - name: Upload Coverage Report
         if: success()
         uses: codecov/codecov-action@v3
-
