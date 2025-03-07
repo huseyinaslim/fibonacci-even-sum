@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="fibonacci-even-sum",
-    version="1.0.5",
+    version="1.0.6",
     author="Hüseyin ASLIM",
     author_email="founder@codev.com.tr",
     description="Fibonacci serisinin çift sayılarının toplamını hesaplayan bir Python CLI uygulaması",
