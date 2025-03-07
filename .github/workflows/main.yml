@@ -5,22 +5,12 @@ name: Fibonacci Even Sum Test
 # @author Hüseyin ASLIM <22098618@mail.baskent.edu.tr>
 # ======================================================
 
-on:
-  push:
-    branches:
-      - develop
-      - "*"
-  pull_request:
-    branches:
-      - develop
-  workflow_dispatch:
-
 jobs:
   test:
     strategy:
       matrix:
         include:
-          # Ubuntu kombinasyonları
+          # Ubuntu kombinasyonları (x64)
           - os: ubuntu-latest
             python-version: "3.8"
             architecture: "x64"
@@ -36,14 +26,14 @@ jobs:
           - os: ubuntu-latest
             python-version: "3.12"
             architecture: "x64"
-          # macOS kombinasyonları (eski sürümler hariç)
+          # macOS kombinasyonları (sadece desteklenen sürümler, native arm64)
           - os: macos-latest
             python-version: "3.11"
             architecture: "arm64"
           - os: macos-latest
             python-version: "3.12"
             architecture: "arm64"
-          # Windows kombinasyonları
+          # Windows kombinasyonları (x64)
           - os: windows-latest
             python-version: "3.8"
             architecture: "x64"
@@ -68,13 +58,13 @@ jobs:
       - name: Fix gettext issue on macOS
         if: matrix.os == 'macos-latest'
         run: |
-          arch -x86_64 brew reinstall gettext
-          arch -x86_64 brew link --force --overwrite gettext
+          brew reinstall gettext
+          brew link --force --overwrite gettext
           sudo mkdir -p /usr/local/opt
-          sudo ln -sf "$(arch -x86_64 brew --prefix gettext)" /usr/local/opt/gettext
-          echo 'export PATH=$(arch -x86_64 brew --prefix gettext)/bin:$PATH' >> $GITHUB_ENV
-          echo 'export LDFLAGS=-L$(arch -x86_64 brew --prefix gettext)/lib' >> $GITHUB_ENV
-          echo 'export CPPFLAGS=-I$(arch -x86_64 brew --prefix gettext)/include' >> $GITHUB_ENV
+          sudo ln -sf "$(brew --prefix gettext)" /usr/local/opt/gettext
+          echo 'export PATH=$(brew --prefix gettext)/bin:$PATH' >> $GITHUB_ENV
+          echo 'export LDFLAGS=-L$(brew --prefix gettext)/lib' >> $GITHUB_ENV
+          echo 'export CPPFLAGS=-I$(brew --prefix gettext)/include' >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v4
