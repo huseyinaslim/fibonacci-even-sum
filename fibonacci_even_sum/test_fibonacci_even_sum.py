@@ -7,12 +7,27 @@ unit testleri.
 """
 
 import unittest
-from .fibonacci_even_sum import (  # noqa
-    fibonacci_even_sum,
-    fibonacci_even_sum_original,
-    fibonacci_even_sum_direct,
-    fibonacci_even_sum_formula
-)
+import sys
+import os
+
+# Paket içinde veya dışında çalıştırılabilmesi için import yolunu ayarlıyoruz
+if __name__ == "__main__":
+    # Doğrudan çalıştırıldığında
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    from fibonacci_even_sum.fibonacci_even_sum import (
+        fibonacci_even_sum,
+        fibonacci_even_sum_original,
+        fibonacci_even_sum_direct,
+        fibonacci_even_sum_formula
+    )
+else:
+    # Paket içinden import edildiğinde
+    from .fibonacci_even_sum import (  # noqa
+        fibonacci_even_sum,
+        fibonacci_even_sum_original,
+        fibonacci_even_sum_direct,
+        fibonacci_even_sum_formula
+    )
 
 
 class TestFibonacciEvenSum(unittest.TestCase):
