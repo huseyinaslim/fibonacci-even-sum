@@ -6,7 +6,7 @@ Fibonacci serisinin belirli bir sayıya kadar olan çift sayılarının
 toplamını hesaplayan paket.
 """
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 __author__ = "Hüseyin ASLIM"
 
 # Dışa aktarılan fonksiyonlar - noqa ile uyarıları bastırıyoruz
