@@ -2,7 +2,7 @@
 
 [![Fibonacci Even Sum Test](https://github.com/huseyinaslim/fibonacci-even-sum/actions/workflows/main.yml/badge.svg?branch=develop)](https://github.com/huseyinaslim/fibonacci-even-sum/actions/workflows/main.yml)
 [![Downloads](https://img.shields.io/github/downloads/huseyinaslim/fibonacci-even-sum/total)](https://github.com/huseyinaslim/fibonacci-even-sum/releases)
-[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/1.0.0/)
+[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/)
 [![License](https://img.shields.io/github/license/huseyinaslim/fibonacci-even-sum)](https://github.com/huseyinaslim/fibonacci-even-sum/blob/main/LICENSE)
 
 *Read this in [English](README.en.md)*
@@ -71,13 +71,15 @@ Bu komut, projeyi geliştirme modunda kurar, böylece kodda yaptığınız deği
 Programı aşağıdaki gibi çalıştırabilirsiniz:
 
 ```bash
-python3 fibonacci_even_sum.py N
+# Kurulumdan sonra komut satırı aracı olarak
+fibonacci-even-sum N
 ```
 
-veya Unix/Linux/MacOS sistemlerinde:
+veya Python modülü olarak:
 
 ```bash
-./fibonacci_even_sum.py N
+# Modül olarak çalıştırma
+python -m fibonacci_even_sum N
 ```
 
 Burada `N`, Fibonacci serisinin üst sınır değeridir.
@@ -86,22 +88,22 @@ Farklı algoritmaları kullanmak için:
 
 ```bash
 # Doğrudan yöntem kullanarak hesapla
-python3 fibonacci_even_sum.py N --direct
+fibonacci-even-sum N --direct
 
 # Düzeltilmiş formül kullanarak hesapla
-python3 fibonacci_even_sum.py N --formula
+fibonacci-even-sum N --formula
 ```
 
 Algoritmaların performans karşılaştırmasını görmek için:
 
 ```bash
-python3 fibonacci_even_sum.py N --compare
+fibonacci-even-sum N --compare
 ```
 
 ### Örnek
 
 ```bash
-python3 fibonacci_even_sum.py 100
+fibonacci-even-sum 100
 ```
 
 Bu komut, 100'e kadar olan Fibonacci serisindeki çift sayıların toplamını hesaplayacaktır.
@@ -111,13 +113,15 @@ Bu komut, 100'e kadar olan Fibonacci serisindeki çift sayıların toplamını h
 Bu proje, tüm algoritmaların doğru çalıştığını doğrulamak için unit testler içermektedir. Testleri çalıştırmak için:
 
 ```bash
-python3 -m unittest test_fibonacci_even_sum.py
+# Modül olarak çalıştırma
+python -m fibonacci_even_sum.test_fibonacci_even_sum
 ```
 
 veya doğrudan test dosyasını çalıştırarak:
 
 ```bash
-python3 test_fibonacci_even_sum.py
+# Doğrudan çalıştırma
+python fibonacci_even_sum/test_fibonacci_even_sum.py
 ```
 
 ### Test Senaryoları

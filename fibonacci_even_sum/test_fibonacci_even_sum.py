@@ -13,7 +13,8 @@ import os
 # Paket içinde veya dışında çalıştırılabilmesi için import yolunu ayarlıyoruz
 if __name__ == "__main__":
     # Doğrudan çalıştırıldığında
-    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+    parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    sys.path.insert(0, parent_dir)
     from fibonacci_even_sum.fibonacci_even_sum import (
         fibonacci_even_sum,
         fibonacci_even_sum_original,
