@@ -1,51 +1,123 @@
 name: Fibonacci Even Sum Test
 
+# ======================================================
+# GitHub Actions CI/CD Pipeline
+# @author Hüseyin ASLIM <22098618@mail.baskent.edu.tr>
+# ======================================================
+
 on:
   push:
     branches:
-      - main
+      - develop
+      - "*"
   pull_request:
     branches:
-      - main
+      - develop
   workflow_dispatch:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        include:
+          # Ubuntu kombinasyonları (x64)
+          - os: ubuntu-latest
+            python-version: "3.8"
+            architecture: "x64"
+          - os: ubuntu-latest
+            python-version: "3.9"
+            architecture: "x64"
+          - os: ubuntu-latest
+            python-version: "3.10"
+            architecture: "x64"
+          - os: ubuntu-latest
+            python-version: "3.11"
+            architecture: "x64"
+          - os: ubuntu-latest
+            python-version: "3.12"
+            architecture: "x64"
+          # macOS kombinasyonları (sadece desteklenen sürümler, native arm64)
+          - os: macos-latest
+            python-version: "3.11"
+            architecture: "arm64"
+          - os: macos-latest
+            python-version: "3.12"
+            architecture: "arm64"
+          # Windows kombinasyonları (x64)
+          - os: windows-latest
+            python-version: "3.8"
+            architecture: "x64"
+          - os: windows-latest
+            python-version: "3.9"
+            architecture: "x64"
+          - os: windows-latest
+            python-version: "3.10"
+            architecture: "x64"
+          - os: windows-latest
+            python-version: "3.11"
+            architecture: "x64"
+          - os: windows-latest
+            python-version: "3.12"
+            architecture: "x64"
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify Files Exist Before Setup
-        run: ls -R || echo "No files found"
+      - name: Fix gettext issue on macOS
+        if: matrix.os == 'macos-latest'
+        run: |
+          brew reinstall gettext
+          brew link --force --overwrite gettext
+          sudo mkdir -p /usr/local/opt
+          sudo ln -sf "$(brew --prefix gettext)" /usr/local/opt/gettext
+          echo 'export PATH=$(brew --prefix gettext)/bin:$PATH' >> $GITHUB_ENV
+          echo 'export LDFLAGS=-L$(brew --prefix gettext)/lib' >> $GITHUB_ENV
+          echo 'export CPPFLAGS=-I$(brew --prefix gettext)/include' >> $GITHUB_ENV
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.architecture }}
 
-      - name: Verify Files Exist After Setup
-        run: ls -R || echo "No files found"
+      - name: Verify Files Exist
+        run: ls -R fibonacci_even_sum || echo 'No files found'
 
-      - name: Install dependencies
+      - name: Install dependencies (Ubuntu/macOS)
+        if: matrix.os != 'windows-latest'
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install pytest pytest-cov flake8
         shell: bash
 
-      - name: Run Linting (flake8)
+      - name: Install dependencies (Windows)
+        if: matrix.os == 'windows-latest'
         run: |
-          flake8 fibonacci_even_sum.py test_fibonacci_even_sum.py || echo "Linting skipped due to missing files"
+          python -m pip install --upgrade pip
+          if (Test-Path "requirements.txt") { pip install -r requirements.txt }
+          pip install pytest pytest-cov flake8
+        shell: pwsh
+
+      - name: Run Linting
+        shell: bash
+        run: |
+          if [ -f fibonacci_even_sum/fibonacci_even_sum.py ] && [ -f fibonacci_even_sum/test_fibonacci_even_sum.py ]; then
+            flake8 fibonacci_even_sum/fibonacci_even_sum.py fibonacci_even_sum/test_fibonacci_even_sum.py;
+          else
+            echo 'Linting skipped due to missing files';
+          fi
 
       - name: Run Fibonacci Even Sum Tests with Coverage
+        shell: bash
         run: |
-          pytest --cov=fibonacci_even_sum test_fibonacci_even_sum.py || echo "Tests skipped due to missing files"
+          if [ -f fibonacci_even_sum/test_fibonacci_even_sum.py ]; then
+            pytest --cov=fibonacci_even_sum fibonacci_even_sum/test_fibonacci_even_sum.py;
+          else
+            echo 'Tests skipped due to missing files';
+          fi
 
       - name: Upload Coverage Report
         if: success()
