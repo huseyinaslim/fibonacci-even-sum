@@ -2,7 +2,7 @@
 
 [![Tests](https://img.shields.io/github/workflow/status/huseyinaslim/fibonacci-even-sum/tests?label=tests)](https://github.com/huseyinaslim/fibonacci-even-sum/actions)
 [![Downloads](https://img.shields.io/github/downloads/huseyinaslim/fibonacci-even-sum/total)](https://github.com/huseyinaslim/fibonacci-even-sum/releases)
-[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/)
+[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/1.0.0/)
 [![License](https://img.shields.io/github/license/huseyinaslim/fibonacci-even-sum)](https://github.com/huseyinaslim/fibonacci-even-sum/blob/main/LICENSE)
 
 *Bu belgeyi [Türkçe](README.md) olarak oku*
@@ -28,14 +28,43 @@ In this project, we calculate the sum of even numbers in the Fibonacci series up
 
 ## Installation
 
+### Installation from GitHub
+
 ```bash
 # Clone the repository
-git clone git@github.com:huseyinaslim/fibonacci-even-sum.git
+git clone https://github.com/huseyinaslim/fibonacci-even-sum.git
 cd fibonacci-even-sum
 
 # Give execution permission (Unix/Linux/MacOS)
 chmod +x fibonacci_even_sum.py
 ```
+
+### Installation from PyPI (with pip)
+
+```bash
+# Installation from PyPI
+pip install fibonacci-even-sum
+```
+
+This command downloads and installs the latest version from PyPI. After installation, you can use the `fibonacci-even-sum` command directly:
+
+```bash
+fibonacci-even-sum 100
+```
+
+### Installing a Specific Version
+
+```bash
+pip install fibonacci-even-sum==1.0.0
+```
+
+### Installing in Development Mode
+
+```bash
+pip install -e .
+```
+
+This command installs the project in development mode, so changes you make to the code take effect immediately.
 
 ## Usage
 

@@ -2,7 +2,7 @@
 
 [![Tests](https://img.shields.io/github/workflow/status/huseyinaslim/fibonacci-even-sum/tests?label=tests)](https://github.com/huseyinaslim/fibonacci-even-sum/actions)
 [![Downloads](https://img.shields.io/github/downloads/huseyinaslim/fibonacci-even-sum/total)](https://github.com/huseyinaslim/fibonacci-even-sum/releases)
-[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/)
+[![PyPI](https://img.shields.io/pypi/v/fibonacci-even-sum)](https://pypi.org/project/fibonacci-even-sum/1.0.0/)
 [![License](https://img.shields.io/github/license/huseyinaslim/fibonacci-even-sum)](https://github.com/huseyinaslim/fibonacci-even-sum/blob/main/LICENSE)
 
 *Read this in [English](README.en.md)*
@@ -28,14 +28,43 @@ Bu projede, belirli bir N sayısına kadar olan Fibonacci serisindeki çift say�
 
 ## Kurulum
 
+### GitHub'dan Kurulum
+
 ```bash
 # Repoyu klonlayın
-git clone git@github.com:huseyinaslim/fibonacci-even-sum.git
+git clone https://github.com/huseyinaslim/fibonacci-even-sum.git
 cd fibonacci-even-sum
 
 # Çalıştırma izni verin (Unix/Linux/MacOS)
 chmod +x fibonacci_even_sum.py
 ```
+
+### PyPI'dan Kurulum (pip ile)
+
+```bash
+# PyPI'dan kurulum
+pip install fibonacci-even-sum
+```
+
+Bu komut, en son sürümü PyPI'dan indirir ve kurar. Kurulumdan sonra, `fibonacci-even-sum` komutunu doğrudan kullanabilirsiniz:
+
+```bash
+fibonacci-even-sum 100
+```
+
+### Belirli Bir Sürümü Kurma
+
+```bash
+pip install fibonacci-even-sum==1.0.0
+```
+
+### Geliştirme Sürümünü Kurma
+
+```bash
+pip install -e .
+```
+
+Bu komut, projeyi geliştirme modunda kurar, böylece kodda yaptığınız değişiklikler anında etkili olur.
 
 ## Kullanım
 
