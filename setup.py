@@ -8,13 +8,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="fibonacci-even-sum",
-    version="1.0.0",
+    version="1.0.1",
     author="Hüseyin ASLIM",
     author_email="founder@codev.com.tr",
     description="Fibonacci serisinin çift sayılarının toplamını hesaplayan bir Python CLI uygulaması",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/huseyinaslim/fibonacci-even-sum",
+    url="https://github.com/huseyinaslim/fibonacci-event-sum",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
