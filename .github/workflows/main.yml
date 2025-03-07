@@ -64,10 +64,22 @@ jobs:
         shell: pwsh
 
       - name: Run Linting
-        run: flake8 fibonacci_even_sum/fibonacci_even_sum.py fibonacci_even_sum/test_fibonacci_even_sum.py || echo "Linting skipped due to missing files"
+        shell: bash
+        run: |
+          if [ -f fibonacci_even_sum/fibonacci_even_sum.py ] && [ -f fibonacci_even_sum/test_fibonacci_even_sum.py ]; then
+            flake8 fibonacci_even_sum/fibonacci_even_sum.py fibonacci_even_sum/test_fibonacci_even_sum.py;
+          else
+            echo "Linting skipped due to missing files";
+          fi
 
       - name: Run Fibonacci Even Sum Tests with Coverage
-        run: pytest --cov=fibonacci_even_sum fibonacci_even_sum/test_fibonacci_even_sum.py || echo "Tests skipped due to missing files"
+        shell: bash
+        run: |
+          if [ -f fibonacci_even_sum/test_fibonacci_even_sum.py ]; then
+            pytest --cov=fibonacci_even_sum fibonacci_even_sum/test_fibonacci_even_sum.py;
+          else
+            echo "Tests skipped due to missing files";
+          fi
 
       - name: Upload Coverage Report
         if: success()
